@@ -22,7 +22,6 @@ const SignUp = () => {
           newsLetter,
         }
       );
-      console.log(res.data.token);
       const token = res.data.token;
       Cookies.set("token", token, { expires: 2 });
       navigate("/");

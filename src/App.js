@@ -3,11 +3,13 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Header from "./components/Header";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 const App = () => {
   return (
     <Router>
       <Header />
+      <Login />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
