@@ -27,7 +27,9 @@ const Offer = () => {
     <span>Loading</span>
   ) : (
     <div className="">
-      <div></div>
+      <div>
+        <img src={offer.product_image.url} alt="" />
+      </div>
       <div></div>
     </div>
   );

@@ -1,6 +1,7 @@
 import logo from "../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -21,9 +22,11 @@ const Header = () => {
         <button className="w-32 rounded-md border border-[#2CB1BA] py-1.5 px-4 text-sm text-[#2CB1BA]">
           Se Connecter
         </button>
-        <button className="w-32 rounded-md border border-[#2CB1BA] py-1.5 px-4 text-sm text-[#2CB1BA]">
-          S'inscrire
-        </button>
+        <Link to="/signup">
+          <button className="w-32 rounded-md border border-[#2CB1BA] py-1.5 px-4 text-sm text-[#2CB1BA]">
+            S'inscrire
+          </button>
+        </Link>
       </div>
 
       <button className="w-32 rounded-md border border-[#2CB1BA] bg-[#2CB1BA] py-1.5  text-sm text-sm text-white">
