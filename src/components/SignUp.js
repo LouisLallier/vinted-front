@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = ({ handleToken, showModal, setShowModal }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [newsLetter, setNewsLetter] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -23,15 +24,33 @@ const SignUp = () => {
         }
       );
       const token = res.data.token;
-      Cookies.set("token", token, { expires: 2 });
-      navigate("/");
+      if (token) {
+        handleToken(token);
+        navigate("/");
+      }
     } catch (e) {
       console.error(e);
+      if (e.response.data.message === "This email already has an account") {
+        setErrorMessage(
+          "Cet email est déjà utilisé, veuillez créer un compte avec un mail valide."
+        );
+      }
+      //   Si je reçois un message d'erreur "Missing parameters"
+      if (e.response.data.message === "Missing parameters") {
+        setErrorMessage("Veuillez remplir tous les champs svp.");
+      }
     }
   };
 
   return (
-    <div>
+    <div className="absolute top-0 left-0 z-10">
+      <button
+        onClick={() => {
+          setShowModal("");
+        }}
+      >
+        Fermer
+      </button>
       <form
         className="mb-4 rounded bg-red-100 px-8 pt-6 pb-8 shadow-md"
         onSubmit={handleSubmit}
@@ -70,15 +89,17 @@ const SignUp = () => {
         <div className="p-2">
           <label htmlFor="pass">Newsletters</label>
           <input
-            value={newsLetter}
-            onChange={(e) => setNewsLetter(e.target.checked)}
+            checked={newsLetter}
+            onChange={(e) => setNewsLetter(!newsLetter)}
             type="checkbox"
           />
         </div>
+        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
         <button className="rounded bg-amber-100 p-2" type="submit">
-          Log In
+          S'inscrire !
         </button>
+        <Link to="/login">Tu as déjà un compte, connecte-toi !</Link>
       </form>
     </div>
   );

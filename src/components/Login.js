@@ -1,9 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ handleToken, showModal, setShowModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,15 +19,24 @@ const Login = () => {
         }
       );
       const token = res.data.token;
-      Cookies.set("token", token, { expires: 2 });
-      navigate("/");
+      if (token) {
+        handleToken(token);
+        navigate("/");
+      }
     } catch (e) {
       console.error(e);
     }
   };
 
   return (
-    <div className="flex justify-center pt-48">
+    <div className="absolute top-0 left-0 z-10 flex justify-center pt-48">
+      <button
+        onClick={() => {
+          setShowModal("");
+        }}
+      >
+        Fermer
+      </button>
       <div className="w-full max-w-xs">
         <form
           className="mb-4 rounded bg-red-100 px-8 pt-6 pb-8 shadow-md"
