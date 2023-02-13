@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import HomeOffers from "../components/HomeOffers";
 
-const Home = () => {
+const Home = ({ search }) => {
   const [offers, setOffers] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -11,7 +11,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
         );
         setOffers(response.data.offers);
         setIsLoading(false);
@@ -20,7 +20,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   return isLoading ? (
     <span>Loading</span>

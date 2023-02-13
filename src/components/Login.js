@@ -30,14 +30,14 @@ const Login = ({ handleToken, showModal, setShowModal }) => {
 
   return (
     <div className="absolute top-0 left-0 z-10 flex justify-center pt-48">
-      <button
-        onClick={() => {
-          setShowModal("");
-        }}
-      >
-        Fermer
-      </button>
       <div className="w-full max-w-xs">
+        <button
+          onClick={() => {
+            setShowModal("");
+          }}
+        >
+          Fermer
+        </button>
         <form
           className="mb-4 rounded bg-red-100 px-8 pt-6 pb-8 shadow-md"
           onSubmit={handleSubmit}

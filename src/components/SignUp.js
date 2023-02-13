@@ -43,64 +43,66 @@ const SignUp = ({ handleToken, showModal, setShowModal }) => {
   };
 
   return (
-    <div className="absolute top-0 left-0 z-10">
-      <button
-        onClick={() => {
-          setShowModal("");
-        }}
-      >
-        Fermer
-      </button>
-      <form
-        className="mb-4 rounded bg-red-100 px-8 pt-6 pb-8 shadow-md"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex justify-center pb-3">Créer votre compte</div>
-        <div className="p-3">
-          <label className="pr-2" htmlFor="email">
-            Email
+    <div className="absolute top-0 left-0 z-10 flex justify-center pt-48">
+      <div className="w-full max-w-xs">
+        <button
+          onClick={() => {
+            setShowModal("");
+          }}
+        >
+          Fermer
+        </button>
+        <form
+          className="mb-4 rounded bg-red-100 px-8 pt-6 pb-8 shadow-md"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex justify-center pb-3">Créer votre compte</div>
+          <div className="p-3">
+            <label className="pr-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Your Email"
+            />
+          </div>
+          <label className="pr-2" htmlFor="username">
+            Username
           </label>
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Your Email"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="Username"
           />
-        </div>
-        <label className="pr-2" htmlFor="username">
-          Username
-        </label>
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          placeholder="Username"
-        />
 
-        <div className="p-2">
-          <label htmlFor="pass">Password</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="*********"
-          />
-        </div>
-        <div className="p-2">
-          <label htmlFor="pass">Newsletters</label>
-          <input
-            checked={newsLetter}
-            onChange={(e) => setNewsLetter(!newsLetter)}
-            type="checkbox"
-          />
-        </div>
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          <div className="p-2">
+            <label htmlFor="pass">Password</label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="*********"
+            />
+          </div>
+          <div className="p-2">
+            <label htmlFor="pass">Newsletters</label>
+            <input
+              checked={newsLetter}
+              onChange={(e) => setNewsLetter(!newsLetter)}
+              type="checkbox"
+            />
+          </div>
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
-        <button className="rounded bg-amber-100 p-2" type="submit">
-          S'inscrire !
-        </button>
-        <Link to="/login">Tu as déjà un compte, connecte-toi !</Link>
-      </form>
+          <button className="rounded bg-amber-100 p-2" type="submit">
+            S'inscrire !
+          </button>
+          <Link to="/login">Tu as déjà un compte, connecte-toi !</Link>
+        </form>
+      </div>
     </div>
   );
 };
