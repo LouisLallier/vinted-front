@@ -1,9 +1,4 @@
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Header from "./components/Header";
@@ -53,14 +48,7 @@ const App = () => {
           element={<Login handleToken={handleToken} />}
         />
         <Route path="/offer/:id" element={<Offer />} />
-        {/*{token ? (*/}
-        {/*  <Route*/}
-        {/*    path="/addOffer"*/}
-        {/*    element={<AddOffer token={token} setShowModal={setShowModal} />}*/}
-        {/*  />*/}
-        {/*) : (*/}
-        {/*  <Route path="/" element={<Home search={search} />} />*/}
-        {/*)}*/}
+
         <Route element={<ProtectedRoute token={token} set={setShowModal} />}>
           <Route path="/addOffer" element={<AddOffer />} />
         </Route>

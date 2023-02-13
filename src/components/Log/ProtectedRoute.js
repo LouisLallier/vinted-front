@@ -1,6 +1,4 @@
-import { Navigate, Outlet, Route, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const ProtectedRoute = ({ token, set }) => {
   const navigate = useNavigate();
