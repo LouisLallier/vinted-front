@@ -1,11 +1,11 @@
 import { Outlet, useNavigate } from "react-router-dom";
 
-const ProtectedRoute = ({ token, set }) => {
+const ProtectedRoute = ({ token, setShowModal }) => {
   const navigate = useNavigate();
 
   const goToHomeAndLog = () => {
     navigate("/");
-    set("login");
+    setShowModal("login");
   };
 
   return token ? <Outlet /> : goToHomeAndLog();

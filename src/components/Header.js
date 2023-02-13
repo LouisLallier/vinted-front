@@ -1,7 +1,7 @@
 import logo from "../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -82,10 +82,11 @@ const Header = ({
             Se Déconnecter
           </button>
         )}
-
-        <button className="w-32 rounded-md border border-[#2CB1BA] bg-[#2CB1BA] py-1.5  text-sm text-sm text-white">
-          Vend tes articles
-        </button>
+        <Link to="/addOffer">
+          <button className="w-32 rounded-md border border-[#2CB1BA] bg-[#2CB1BA] py-1.5  text-sm text-sm text-white">
+            Vend tes articles
+          </button>
+        </Link>
       </div>
     </div>
   );
