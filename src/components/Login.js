@@ -29,7 +29,7 @@ const Login = ({ handleToken, showModal, setShowModal }) => {
   };
 
   return (
-    <div className="absolute top-0 left-0 z-10 flex justify-center pt-48">
+    <div className="absolute top-48 left-0 z-10 flex justify-center ">
       <div className="w-full max-w-xs">
         <button
           onClick={() => {

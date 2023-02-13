@@ -12,7 +12,9 @@ import Login from "./components/Login";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import AddOffer from "./pages/AddOffer";
+
 import ProtectedRoute from "./components/Log/ProtectedRoute";
+import NotFound404 from "./pages/NotFound404";
 
 const App = () => {
   const [token, setToken] = useState(Cookies.get("token") || null);
@@ -41,7 +43,7 @@ const App = () => {
         setSearch={setSearch}
       />
       <Routes>
-        <Route path="/" element={<Home search={search} />} />
+        <Route path="/" exact element={<Home search={search} />} />
         <Route path="/signup" element={<SignUp handleToken={handleToken} />} />
         <Route
           path="/login"
@@ -51,8 +53,18 @@ const App = () => {
           element={<Login handleToken={handleToken} />}
         />
         <Route path="/offer/:id" element={<Offer />} />
-
-        <Route path="/addOffer" element={<AddOffer token={token} />} />
+        {/*{token ? (*/}
+        {/*  <Route*/}
+        {/*    path="/addOffer"*/}
+        {/*    element={<AddOffer token={token} setShowModal={setShowModal} />}*/}
+        {/*  />*/}
+        {/*) : (*/}
+        {/*  <Route path="/" element={<Home search={search} />} />*/}
+        {/*)}*/}
+        <Route element={<ProtectedRoute set={setShowModal} />}>
+          <Route path="/addOffer" element={AddOffer} />
+        </Route>
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
     </Router>
   );

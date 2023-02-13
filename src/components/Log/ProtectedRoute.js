@@ -1,16 +1,16 @@
-import { Navigate, Route } from "react-router-dom";
+import { Navigate, Outlet, Route, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import Home from "../../pages/Home";
-import header from "../Header";
-import Header from "../Header";
-import App from "../../App";
+import { useEffect } from "react";
 
-const ProtectedRoute = ({ path, children }) => {
+const ProtectedRoute = ({ set }) => {
+  const navigate = useNavigate();
+  const goToHomeAndLog = () => {
+    navigate("/");
+    set("login");
+  };
+
   const token = Cookies.get("token");
-  if (token) {
-    return <Navigate to={path} replace />;
-  }
 
-  return children ? children : <Home />;
+  return token ? <Outlet /> : goToHomeAndLog();
 };
 export default ProtectedRoute;
