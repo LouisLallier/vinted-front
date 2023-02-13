@@ -24,11 +24,11 @@ const App = () => {
   const handleToken = (token) => {
     if (token) {
       setToken(token);
-      Cookies.set("token-vinted", token, { expires: 2 });
+      Cookies.set("token", token, { expires: 2 });
       setShowModal("");
     } else {
       setToken(null);
-      Cookies.remove("token-vinted");
+      Cookies.remove("token");
     }
   };
 
@@ -61,8 +61,8 @@ const App = () => {
         {/*) : (*/}
         {/*  <Route path="/" element={<Home search={search} />} />*/}
         {/*)}*/}
-        <Route element={<ProtectedRoute set={setShowModal} />}>
-          <Route path="/addOffer" element={AddOffer} />
+        <Route element={<ProtectedRoute token={token} set={setShowModal} />}>
+          <Route path="/addOffer" element={<AddOffer />} />
         </Route>
         <Route path="*" element={<NotFound404 />} />
       </Routes>

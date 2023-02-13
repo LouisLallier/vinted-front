@@ -1,10 +1,5 @@
-import { Navigate, redirect, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
-const AddOffer = ({ token, setShowModal }) => {
-  const navigate = useNavigate();
-
-  return token ? (
+const AddOffer = () => {
+  return (
     <div>
       <div>Box image</div>
       <div>
@@ -21,8 +16,6 @@ const AddOffer = ({ token, setShowModal }) => {
         <input type="text" />
       </div>
     </div>
-  ) : (
-    navigate("/")
   );
 };
 
