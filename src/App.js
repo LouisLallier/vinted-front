@@ -50,7 +50,7 @@ const App = () => {
         <Route path="/offer/:id" element={<Offer />} />
 
         <Route element={<ProtectedRoute token={token} set={setShowModal} />}>
-          <Route path="/addOffer" element={<AddOffer />} />
+          <Route path="/addOffer" element={<AddOffer token={token} />} />
         </Route>
         <Route path="*" element={<NotFound404 />} />
       </Routes>

@@ -1,7 +1,7 @@
 import logo from "../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -13,6 +13,8 @@ const Header = ({
   search,
   setSearch,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative">
       {showModal === "login" ? (
@@ -77,6 +79,7 @@ const Header = ({
             onClick={() => {
               // Cookies.remove("token-vinted");
               handleToken(null);
+              navigate("/");
             }}
           >
             Se Déconnecter
