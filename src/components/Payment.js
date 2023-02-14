@@ -21,7 +21,7 @@ const Payment = ({ userId }) => {
           <p>Frais de protection acheteur : {(0.4).toFixed(2)} €</p>
           <p> Total: {(price + 2.5 + 0.4).toFixed(2)}€</p>
           <p>
-            Il ne vous reste plus qu'une étape pour vous offrir{" "}
+            Il ne vous reste plus qu'une étape
             <strong>{title} </strong>. vous allez payer{" "}
             <strong>{(price + 2.5 + 0.4).toFixed(2)} €</strong> (frais de
             protection et frais de port inclus)
