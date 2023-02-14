@@ -24,18 +24,18 @@ const App = () => {
   const [showModal, setShowModal] = useState("");
   const [search, setSearch] = useState("");
 
-  const handleToken = (token) => {
+  const handleToken = (token, id) => {
     if (token) {
       setToken(token);
+      setUserId(id);
       Cookies.set("token", token, { expires: 2 });
       setShowModal("");
     } else {
       setToken(null);
+      setUserId("");
       Cookies.remove("token");
     }
   };
-
-  console.log(userId);
 
   return (
     <Router>
@@ -46,7 +46,6 @@ const App = () => {
         handleToken={handleToken}
         setShowModal={setShowModal}
         setSearch={setSearch}
-        setUserId={setUserId}
       />
       <Routes>
         <Route path="/" exact element={<Home search={search} />} />
@@ -56,13 +55,7 @@ const App = () => {
           setShowmodal={() => {
             setShowModal("");
           }}
-          element={
-            <Login
-              userId={userId}
-              setUserId={setUserId}
-              handleToken={handleToken}
-            />
-          }
+          element={<Login userId={userId} handleToken={handleToken} />}
         />
         <Route path="/offer/:id" element={<Offer />} />
 
@@ -74,7 +67,7 @@ const App = () => {
             path="/payment"
             element={
               <Elements stripe={stripePromise}>
-                <CheckOutForm />
+                <CheckOutForm userId={userId} />
               </Elements>
             }
           />
