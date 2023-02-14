@@ -83,7 +83,12 @@ const AddOffer = ({ token }) => {
           );
         })}
 
-        <button type="submit">Ajouter</button>
+        <button
+          className="rounded-md border border-[#2cb1ba] bg-[#2cb1ba] p-4 text-white hover:bg-white hover:text-[#2cb1ba]"
+          type="submit"
+        >
+          Ajouter
+        </button>
       </form>
     </div>
   );

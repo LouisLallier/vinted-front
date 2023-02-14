@@ -48,9 +48,18 @@ const CheckoutForm = ({ userId, title, price }) => {
       <form onSubmit={handleSubmit}>
         <h1>Formulaire de paiement</h1>
         <CardElement />
-        <button disabled={isLoading} type="submit">
-          Payer
-        </button>
+        {completed ? (
+          <p>Paiement effectué</p>
+        ) : (
+          <button
+            className="rounded-md border border-[#2cb1ba] bg-[#2cb1ba] p-4 text-white hover:bg-white hover:text-[#2cb1ba]"
+            disabled={isLoading}
+            type="submit"
+          >
+            {" "}
+            Payer
+          </button>
+        )}
       </form>
     </div>
   );

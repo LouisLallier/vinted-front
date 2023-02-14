@@ -24,33 +24,41 @@ const Offer = () => {
   console.log(offer);
 
   return isLoading ? (
-    <span>Loading</span>
+    <span className="bg-[#EBEDEE]">Loading</span>
   ) : (
-    <div>
-      <img src={offer.product_image.secure_url} alt="product" />
-      <p>{offer.product_price} €</p>
-      {offer.product_details.map((detail, index) => {
-        const key = Object.keys(detail)[0];
-        return (
-          <div key={index}>
-            <span>{key} : </span>
-            <span>{detail[key]}</span>
-          </div>
-        );
-      })}
-      <p>{offer.product_name}</p>
-      <p>{offer.product_description}</p>
-      <p>{offer.owner.account.username}</p>
-      <Link
-        to="/payment"
-        state={{
-          title: offer.product_name,
-          price: offer.product_price,
-          picture: offer.product_image.secure_url,
-        }}
-      >
-        <button>BUY IT NOW !</button>
-      </Link>
+    <div className="flex h-screen justify-center gap-28 bg-[#EBEDEE] pt-16">
+      <img
+        className="h-[600px] w-[450px] rounded-md"
+        src={offer.product_image.secure_url}
+        alt="product"
+      />
+      <div className="h-[600px] w-[400px] rounded-md bg-white p-9">
+        <p className="py-4">{offer.product_price} €</p>
+        {offer.product_details.map((detail, index) => {
+          const key = Object.keys(detail)[0];
+          return (
+            <div className="flex" key={index}>
+              <div className="w-36 text-gray-400">{key} : </div>
+              <div className="">{detail[key]}</div>
+            </div>
+          );
+        })}
+        <p className="py-20">{offer.product_name}</p>
+        <p>{offer.product_description}</p>
+        <p className="py-6">{offer.owner.account.username}</p>
+        <Link
+          to="/payment"
+          state={{
+            title: offer.product_name,
+            price: offer.product_price,
+            picture: offer.product_image.secure_url,
+          }}
+        >
+          <button className="rounded-md border border-[#2cb1ba] bg-[#2cb1ba] p-4 text-white hover:bg-white hover:text-[#2cb1ba]">
+            BUY IT NOW !
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
