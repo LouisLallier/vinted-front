@@ -10,13 +10,7 @@ import AddOffer from "./pages/AddOffer";
 
 import ProtectedRoute from "./components/Log/ProtectedRoute";
 import NotFound404 from "./pages/NotFound404";
-import CheckOutForm from "./components/CheckOutForm";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe(
-  "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
-);
+import Payment from "./components/Payment";
 
 const App = () => {
   const [token, setToken] = useState(Cookies.get("token") || null);
@@ -63,15 +57,9 @@ const App = () => {
           element={<ProtectedRoute token={token} setShowModal={setShowModal} />}
         >
           <Route path="/addOffer" element={<AddOffer token={token} />} />
-          <Route
-            path="/payment"
-            element={
-              <Elements stripe={stripePromise}>
-                <CheckOutForm userId={userId} />
-              </Elements>
-            }
-          />
         </Route>
+        <Route path="/payment" element={<Payment userId={userId} />} />
+        {/*<Route path="/payment" element={<Payment userId={userId} />} />*/}
         <Route path="*" element={<NotFound404 />} />
       </Routes>
     </Router>

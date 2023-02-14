@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 
-const CheckOutForm = ({ userId }) => {
+const CheckoutForm = ({ userId, title, price }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
-
-  const location = useLocation();
-  // const { title, price, picture } = location.state;
 
   const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (event) => {
+    // console.log(price);
     event.preventDefault();
     try {
       setIsLoading(true);
@@ -23,11 +20,14 @@ const CheckOutForm = ({ userId }) => {
       });
 
       const stripeToken = stripeResponse.token.id;
+      console.log(stripeToken);
 
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/payment",
         {
           stripeToken: stripeToken,
+          title: title,
+          amount: price,
         }
       );
       if (response.data === "succeeded") {
@@ -41,8 +41,9 @@ const CheckOutForm = ({ userId }) => {
 
   return (
     <div>
-      <form style={{ width: "300px" }} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h1>Formulaire de paiement</h1>
+
         <CardElement />
 
         {completed ? (
@@ -57,4 +58,4 @@ const CheckOutForm = ({ userId }) => {
   );
 };
 
-export default CheckOutForm;
+export default CheckoutForm;
