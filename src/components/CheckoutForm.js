@@ -28,11 +28,12 @@ const CheckoutForm = ({ userId, title, price }) => {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/payment",
         {
-          stripeToken: stripeToken,
+          token: stripeToken,
           title: title,
           amount: price,
         }
       );
+      console.log(response);
       if (response.data === "succeeded") {
         setIsLoading(false);
         setCompleted(true);
@@ -46,16 +47,10 @@ const CheckoutForm = ({ userId, title, price }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <h1>Formulaire de paiement</h1>
-
         <CardElement />
-
-        {completed ? (
-          <p>Paiement effectué</p>
-        ) : (
-          <button disabled={isLoading} type="submit">
-            Payer
-          </button>
-        )}
+        <button disabled={isLoading} type="submit">
+          Payer
+        </button>
       </form>
     </div>
   );
