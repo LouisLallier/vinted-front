@@ -3,7 +3,7 @@ import tear from "../assets/tear-d431548c90905ad757632e4c3075d9473e38c7c6642721e
 
 const Banner = () => {
   return (
-    <div className="relative">
+    <div className="relative mt-[95p]">
       <img
         className="h-[455px] w-full object-cover"
         src={banner}

@@ -18,11 +18,7 @@ const Header = ({
   return (
     <div className="relative">
       {showModal === "login" ? (
-        <Login
-          handleToken={handleToken}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
+        <Login handleToken={handleToken} setShowModal={setShowModal} />
       ) : null}
       {showModal === "signup" ? (
         <SignUp
@@ -75,7 +71,7 @@ const Header = ({
           </div>
         ) : (
           <button
-            className="w-36 rounded-md border border-[#2CB1BA] py-1.5 px-3 text-sm text-[#2CB1BA] hover:bg-[#2CB1BA] hover:text-white"
+            className="w-36 rounded-md border border-[#C3185A] bg-[#C3185A] py-1.5 px-3 text-sm text-white hover:bg-white hover:text-[#C3185A]"
             onClick={() => {
               // Cookies.remove("token-vinted");
               handleToken(null);
