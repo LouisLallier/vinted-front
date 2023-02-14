@@ -10,7 +10,10 @@ const CheckoutForm = ({ userId, title, price }) => {
   const elements = useElements();
 
   const handleSubmit = async (event) => {
-    // console.log(price);
+    console.log(price);
+    console.log(title);
+    console.log(userId);
+
     event.preventDefault();
     try {
       setIsLoading(true);
