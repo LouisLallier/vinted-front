@@ -14,15 +14,12 @@ const SignUp = ({ handleToken, showModal, setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `https://lereacteur-vinted-api.herokuapp.com/user/signup`,
-        {
-          email,
-          username,
-          password,
-          newsLetter,
-        }
-      );
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}`, {
+        email,
+        username,
+        password,
+        newsLetter,
+      });
       const token = res.data.token;
       if (token) {
         handleToken(token);

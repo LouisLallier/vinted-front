@@ -12,7 +12,7 @@ const Login = ({ handleToken, setShowModal }) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `https://lereacteur-vinted-api.herokuapp.com/user/login`,
+        `${process.env.REACT_APP_API_URL}/user/login`,
         {
           email,
           password,

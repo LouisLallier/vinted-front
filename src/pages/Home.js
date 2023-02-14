@@ -11,7 +11,7 @@ const Home = ({ search }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
+          `${process.env.REACT_APP_API_URL}/offers?title=${search}`
         );
         setOffers(response.data.offers);
         setIsLoading(false);

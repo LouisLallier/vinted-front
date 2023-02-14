@@ -44,7 +44,7 @@ const AddOffer = ({ token }) => {
       formData.append("picture", picture);
 
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        `${process.env.REACT_APP_API_URL}`,
         formData,
         {
           headers: {
