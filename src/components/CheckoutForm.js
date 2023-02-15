@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
+import Cookies from "js-cookie";
 
-const CheckoutForm = ({ userId, title, price }) => {
+const CheckoutForm = ({ title, price }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
 
@@ -10,11 +11,8 @@ const CheckoutForm = ({ userId, title, price }) => {
   const elements = useElements();
 
   const handleSubmit = async (event) => {
-    console.log(price);
-    console.log(title);
-    console.log(userId);
-
     event.preventDefault();
+    const userId = Cookies.get("user-id");
     try {
       setIsLoading(true);
       const cardElement = elements.getElement(CardElement);
@@ -25,11 +23,14 @@ const CheckoutForm = ({ userId, title, price }) => {
       const stripeToken = stripeResponse.token.id;
       console.log(stripeToken);
 
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}`, {
-        token: stripeToken,
-        title: title,
-        amount: price,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/payment`,
+        {
+          token: stripeToken,
+          title: title,
+          amount: price,
+        }
+      );
       console.log(response);
       if (response.data === "succeeded") {
         setIsLoading(false);

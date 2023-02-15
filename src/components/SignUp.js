@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = ({ handleToken, showModal, setShowModal }) => {
+const SignUp = ({ handleTokenAndId, setShowModal }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,8 +21,9 @@ const SignUp = ({ handleToken, showModal, setShowModal }) => {
         newsLetter,
       });
       const token = res.data.token;
+      const userId = res.data._id;
       if (token) {
-        handleToken(token);
+        handleTokenAndId(token, userId);
         navigate("/");
       }
     } catch (e) {

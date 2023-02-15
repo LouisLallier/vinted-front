@@ -7,7 +7,7 @@ import SignUp from "./SignUp";
 
 const Header = ({
   token,
-  handleToken,
+  handleTokenAndId,
   showModal,
   setShowModal,
   search,
@@ -18,12 +18,14 @@ const Header = ({
   return (
     <div className="relative">
       {showModal === "login" ? (
-        <Login handleToken={handleToken} setShowModal={setShowModal} />
+        <Login
+          handleTokenAndId={handleTokenAndId}
+          setShowModal={setShowModal}
+        />
       ) : null}
       {showModal === "signup" ? (
         <SignUp
-          handleToken={handleToken}
-          showModal={showModal}
+          handleTokenAndId={handleTokenAndId}
           setShowModal={setShowModal}
         />
       ) : null}
@@ -74,7 +76,7 @@ const Header = ({
             className="w-36 rounded-md border border-[#C3185A] bg-[#C3185A] py-1.5 px-3 text-sm text-white hover:bg-white hover:text-[#C3185A]"
             onClick={() => {
               // Cookies.remove("token-vinted");
-              handleToken(null);
+              handleTokenAndId(null, null);
               navigate("/");
             }}
           >

@@ -14,20 +14,22 @@ import Payment from "./components/Payment";
 
 const App = () => {
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(Cookies.get("user-id") || null);
   const [showModal, setShowModal] = useState("");
   const [search, setSearch] = useState("");
 
-  const handleToken = (token, id) => {
+  const handleTokenAndId = (token, id) => {
     if (token) {
       setToken(token);
       setUserId(id);
       Cookies.set("token", token, { expires: 2 });
+      Cookies.set("user-id", token, { expires: 2 });
       setShowModal("");
     } else {
       setToken(null);
       setUserId("");
       Cookies.remove("token");
+      Cookies.remove("user-id");
     }
   };
 
@@ -37,19 +39,22 @@ const App = () => {
         token={token}
         showModal={showModal}
         search={search}
-        handleToken={handleToken}
+        handleTokenAndId={handleTokenAndId}
         setShowModal={setShowModal}
         setSearch={setSearch}
       />
       <Routes>
         <Route path="/" exact element={<Home search={search} />} />
-        <Route path="/signup" element={<SignUp handleToken={handleToken} />} />
+        <Route
+          path="/signup"
+          element={<SignUp handleTokenAndId={handleTokenAndId} />}
+        />
         <Route
           path="/login"
           setShowmodal={() => {
             setShowModal("");
           }}
-          element={<Login userId={userId} handleToken={handleToken} />}
+          element={<Login handleTokenAndId={handleTokenAndId} />}
         />
         <Route path="/offer/:id" element={<Offer />} />
 
