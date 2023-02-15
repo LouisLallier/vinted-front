@@ -52,9 +52,9 @@ const CheckoutForm = ({ title, price }) => {
           <button
             className="rounded-md border border-[#2cb1ba] bg-[#2cb1ba] p-4 text-white hover:bg-white hover:text-[#2cb1ba]"
             disabled={isLoading}
+            style={isLoading ? { backgroundColor: "#31a598" } : null}
             type="submit"
           >
-            {" "}
             Payer
           </button>
         )}
